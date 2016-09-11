@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>LR2</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="author" content="Antoniuk">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div class="jumbotron jumbotron-fluid">
+				<div class="container">
+					<h1 class="display-3">Лабораторная работа №2</h1>
+					<p class="lead">Визначення кількісних характеристик надійності <br />за статистичними даними про відмови елементів комп'ютерної системи.<br /></p>
+					<hr class="m-y-2">
+					<p>Виконала студентка 5 курсу групи КІТ-12М<br />Антонюк В. В.</p>
+				</div>
+			</div>
+		</header>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" data-toggle="tab" href="#task" role="tab">Індивідуальне завдання</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#info" role="tab">Короткі відомості</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#files" role="tab">Розрахунки з файлу</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#random" role="tab">Розрахунки</a>
+						</li>
+					</ul>
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div class="tab-pane fade in active" id="task" role="tabpanel">
+							Розробити програмне забезпечення для обчислення сторін надійності. Основою є список завдань, наведений в задачах.<br />
+							Демонстрація роботи програми в наступному порядку:
+							<ul>
+								<li> робите введення вихідних даних для кожного завдання і демонструєте її рішення; </li>
+								<li> зчитуєте вихідні дані зі структурованого файлу, або бази даних, і зберігаєте результати в БД для подальшої обробки.</li>
+							</ul>
+						</div>
+						<div class="tab-pane fade" id="info" role="tabpanel">
+						Надійність - властивість об'єкта зберігати в часі в установлених межах значення всіх параметрів, що характеризують здатність виконувати необхідні функції в заданих режимах і умовах застосування, технічного обслуговування, ремонтів, зберігання і транспортування. Надійність - характеристика, що змінюється в часі. <br />
+							Сторони надійності:
+							<ul>
+							<li> Безвідмовність - властивість об'єкта безупинно зберігати ра-працездатність протягом деякого часу або деякої роботи. </li>
+							<li> Ремонтопридатність - властивість об'єкта, що полягає в пристосованості його до попередження і виявлення відмов і відновлення працездатності об'єкта або шляхом проведе¬нія ремонту, або шляхом заміни відмовили комплектуючих еле¬ментов. Виникають дві самостійні характеристики ремон-топрігодності: пристосованість до проведення ремонту (ремонттопрігодність) і пристосованість до заміни в процесі експлуатації.</li>
+							<li> Довговічність - властивість об'єкта зберігати працездатний-ність до настання граничного стану, т. Е. Наступу тако-го стану, коли воно має бути спрямоване або в ремонт (середній або капітальний), або вилучено з експлуатації.</li>
+							<li> Збереженість - властивість об'єкта зберігати працездатний-ність протягом (і після) його зберігання і (або) транспортування. Властивість збереженість розчленовується на ще більш прості властивості: збереженість в процесі (і після) зберігання в спеціально пристосованому поме¬щеніі, збереженість в процесі (і після) зберігання в польових умовах, збереженість в процесі (і після) транспортування по залізниці і т. д. </li>
+							<li> Працездатність - такий стан об'єкта, при якому він здатний виконувати задані функції, задовольняючи вимогам нормативно-технічної документації. Працездатність - харак¬терістіка стану об'єкта в певний момент часу.</li>
+						</div>
+						<div class="tab-pane fade" id="files" role="tabpanel">
+							<center><label class="btn btn-outline-primary">
+								Обрати файл <input type="file" name="file" id="file" style="display: none;">
+							</label>			
+							<button onClick="printing()" class="btn btn-outline-primary">Вивести результати обчислень</button>
+							<form onsubmit="download(this['name'].value, this['text'].value); return false;" name="form2">
+								<input type="text" name="name" value="test.txt">
+								<textarea name="text">Тут будуть показані результати обчислень з файлу.</textarea>
+								<input type="submit" value="Скачати файл з результатами обчислень" class="btn btn-outline-primary">
+							</form>
+							</center>
+						</div>
+						<div class="tab-pane" id="random" role="tabpanel">
+							<form name="forma1" onsubmit="return false;">
+								<h4>Введіть дані та оберіть параметри, які бажаєте розрахувати: </h4>
+								<button onClick="fill();" class="btn btn-outline-primary">Заповнити</button>
+								<button onClick="clean();" class="btn btn-outline-primary">Очистити</button><br />
+								<input name="N" type="text" placeholder="Число виробів на тестуванні">
+								<input name="t" type="text" placeholder="Час тестування">
+								<input name="n" type="text" placeholder="Число виробів, що вийшли з ладу">
+								<input name="lower_range" type="text" placeholder="Нижній інтервал часу">
+								<input name="upper_range" type="text" placeholder="Верхній інтервал часу">
+								<input name="number" type="text" placeholder="Число виробів, що вийшли з ладу за інтервал">
+								<button onClick="probability(forma1);" class="btn btn-outline-primary">Ймовірність безвідмовної роботи</button>
+								<button onClick="probability_of_failure(forma1);" class="btn btn-outline-primary">Ймовірність відмов</button>
+								<button onClick="frequency(forma1);" class="btn btn-outline-primary">Частота відмов</button>
+								<button onClick="intensity(forma1);" class="btn btn-outline-primary">Інтенсивність відмов</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<main>
+	</main>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="js/tether.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>	
+	<script>
+	var N, n, t, lower_range, upper_range,number, pt, qt, ft, lt, text;
+	document.getElementById('file').onchange = function(){
+		var file = this.files[0];
+		var reader = new FileReader();
+		reader.onload = function(progressEvent){
+		// By lines
+		var lines = this.result.split('\n');
+		N = lines[0];
+		t = lines[1];
+		n = lines[2];
+		lower_range = lines[3];
+		upper_range = lines[4];
+		number = lines[5];
+		pt = (N-n)/N;
+		qt = n/N;
+		ft = number/(N*(upper_range-lower_range));
+		lt = number/((N-n)*(upper_range-lower_range));
+		text = pt+"\n"+qt+"\n"+ft+"\n"+lt+"\n";
+	  };
+	  reader.readAsText(file);
+	  document.form2.text.value = "Розрахунки успішно закінчено. Для отримання результатів натисніть на відповідну кнопку.";
+	};
+	function fill(){
+		document.forma1.N.value = "1000";
+		document.forma1.t.value = "1300";
+		document.forma1.n.value = "288";
+		document.forma1.lower_range.value = "1300";
+		document.forma1.upper_range.value = "1400";
+		document.forma1.number.value = "13";
+	}
+	function clean(){
+		document.forma1.N.value = "";
+		document.forma1.t.value = "";
+		document.forma1.n.value = "";
+		document.forma1.lower_range.value = "";
+		document.forma1.upper_range.value = "";
+		document.forma1.number.value = "";
+	}
+	function probability(obj){
+		var n = obj.n.value;
+		var N = obj.N.value;
+		var pt = (N-n)/N;
+		alert(pt);
+	}
+    function probability_of_failure(obj){
+		var n = obj.n.value;
+		var N = obj.N.value;
+		var qt = n/N;
+		alert(qt);
+	}
+	function frequency(obj){
+		var N = obj.N.value;
+		var number = obj.number.value;
+		var lower_range = obj.lower_range.value;
+		var upper_range = obj.upper_range.value;
+		var ft = number/(N*(upper_range-lower_range));
+		alert(ft);
+	}
+	function intensity(obj){
+		var N = obj.N.value;
+		var n = obj.n.value;
+		var number = obj.number.value;
+		var lower_range = obj.lower_range.value;
+		var upper_range = obj.upper_range.value;
+		var lt =number/((N-n)*(upper_range-lower_range));
+		alert(lt);
+	}
+	function printing() {
+		document.form2.text.value = text;
+	}
+	function download(filename, text) {
+		var element = document.createElement('a');
+		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+		element.setAttribute('download', filename);
+		element.style.display = 'none';
+		document.body.appendChild(element);
+		element.click();
+		document.body.removeChild(element);
+	}
+	</script>
+	</body>
+</html>
+
